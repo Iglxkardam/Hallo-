@@ -20,7 +20,7 @@ function rich(text: string): ReactNode {
 function Block({ b }: { b: NoteBlock }) {
   switch (b.t) {
     case 'h':
-      return <h3 className="nb-h">{b.text}</h3>
+      return <h3 className="nb-h"><Gloss strict>{b.text}</Gloss></h3>
 
     case 'p':
       return <p className="nb-text">{rich(b.text)}</p>
@@ -28,7 +28,7 @@ function Block({ b }: { b: NoteBlock }) {
     case 'rule':
       return (
         <div className="rulebox">
-          <div className="rulebox-title">{b.title}</div>
+          <div className="rulebox-title"><Gloss strict>{b.title}</Gloss></div>
           <div className="rulebox-body">{rich(b.body)}</div>
         </div>
       )
@@ -37,7 +37,7 @@ function Block({ b }: { b: NoteBlock }) {
       return (
         <div className="gt-wrap">
           <table className="gt">
-            <caption>{b.caption}</caption>
+            <caption><Gloss strict>{b.caption}</Gloss></caption>
             <thead>
               <tr>
                 {b.head.map((h, i) => (
@@ -105,7 +105,7 @@ function Block({ b }: { b: NoteBlock }) {
       return (
         <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
           <div className="sticky" style={{ maxWidth: 460 }}>
-            {b.text}
+            <Gloss strict>{b.text}</Gloss>
           </div>
         </div>
       )

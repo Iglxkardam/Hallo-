@@ -74,9 +74,9 @@ export default function DayView() {
             <Pill>{day.minutes} min</Pill>
             <Pill color="var(--purple)">{day.examSkill}</Pill>
           </div>
-          <h1 className="h1">{day.title}</h1>
+          <h1 className="h1"><Gloss strict>{day.title}</Gloss></h1>
           <p className="muted" style={{ maxWidth: '58ch' }}>{day.goal}</p>
-          <p className="small dim mono">{day.focus}</p>
+          <p className="small dim mono"><Gloss strict>{day.focus}</Gloss></p>
         </div>
         <ProgressRing value={steps / 3} size={76} stroke={6} color={color}>
           <span className="mono small" style={{ fontWeight: 800 }}>{steps}/3</span>
@@ -171,7 +171,7 @@ export default function DayView() {
             <div className="card card-pad col" style={{ gap: 'var(--s4)' }}>
               <div className="between wrap" style={{ gap: 'var(--s3)' }}>
                 <div className="col" style={{ gap: 2 }}>
-                  <h2 className="h3">{day.dialogue.title}</h2>
+                  <h2 className="h3"><Gloss strict>{day.dialogue.title}</Gloss></h2>
                   <span className="small muted">{day.dialogue.situation}</span>
                 </div>
                 <button
