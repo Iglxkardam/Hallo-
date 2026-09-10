@@ -60,14 +60,23 @@ export const d01: Day = {
     {
       t: 'table',
       caption: 'Umlaute und ß',
-      head: ['Sign', 'Sound', 'Example', 'Type as'],
+      head: ['Sign', 'How to make the sound', 'Example', 'No ä key? Type'],
       rows: [
-        ['ä', 'the e in "bed"', 'der Käse — cheese', 'ae'],
-        ['ö', 'rounded, like the u in "fur"', 'schön — beautiful', 'oe'],
-        ['ü', 'like the French u', 'müde — tired', 'ue'],
-        ['ß', 'a sharp s (double s)', 'die Straße — street', 'ss'],
+        ['ä', 'just the e in "bed" — lips stay normal', 'der Käse — cheese', 'ae'],
+        ['ö', 'round your lips as if to say "oh", then say "eh"', 'schön — beautiful', 'oe'],
+        ['ü', 'round your lips as if to say "oo", then say "ee"', 'müde — tired', 'ue'],
+        ['ß', 'always a sharp "ss" — never a z sound', 'die Straße — street', 'ss'],
       ],
       say: ['der Käse', 'schön', 'müde', 'die Straße'],
+    },
+    {
+      t: 'tip',
+      text: 'The trick for **ö** and **ü** is that your lips and your tongue do different jobs. Lips make the round shape of "oh" or "oo"; the tongue says "eh" or "ee". Hold the lips still and the sound comes out right. There is no English equivalent, which is why it has to be built this way.',
+    },
+    {
+      t: 'rule',
+      title: 'Regel — no umlaut key? Write ae, oe, ue, ss',
+      body: 'If a keyboard has no ä ö ü ß, Germans write **ae, oe, ue, ss** instead: Käse → Kaese, schön → schoen, müde → muede, Straße → Strasse. This is normal and understood everywhere. **This app accepts both spellings in every exercise**, so you can type schoen and it counts as correct. When you write by hand, use the real umlaut.',
     },
     {
       t: 'table',
