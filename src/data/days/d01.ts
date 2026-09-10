@@ -21,7 +21,7 @@ export const d01: Day = {
     },
     {
       t: 'table',
-      caption: 'Das Alphabet',
+      caption: 'Das Alphabet — tap 🔊 to hear "B wie Ball"',
       head: ['Letter', 'Say it', 'Example', 'English'],
       rows: [
         ['A a', 'ah', 'der Apfel', 'apple'],
@@ -51,7 +51,7 @@ export const d01: Day = {
         ['Y y', 'ypsilon', 'das Yoga', 'yoga'],
         ['Z z', 'tsett', 'der Zoo', 'zoo'],
       ],
-      say: ['der Apfel', 'der Ball', 'das Café', 'danke', 'das Essen', 'der Fisch', 'gut', 'das Haus', 'ich', 'das Jahr', 'die Katze', 'das Land', 'die Maus', 'der Name', 'die Oma', 'der Park', 'das Quiz', 'rot', 'die Sonne', 'der Tisch', 'und', 'der Vogel', 'das Wasser', 'die Box', 'das Yoga', 'der Zoo'],
+      say: ['A wie Apfel', 'B wie Ball', 'C wie Café', 'D wie danke', 'E wie Essen', 'F wie Fisch', 'G wie gut', 'H wie Haus', 'I wie ich', 'Jott wie Jahr', 'K wie Katze', 'L wie Land', 'M wie Maus', 'N wie Name', 'O wie Oma', 'P wie Park', 'Q wie Quiz', 'R wie rot', 'S wie Sonne', 'T wie Tisch', 'U wie und', 'V wie Vogel', 'W wie Wasser', 'X wie Box', 'Y wie Yoga', 'Z wie Zoo'],
     },
     {
       t: 'warn',

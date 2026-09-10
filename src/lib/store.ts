@@ -186,7 +186,19 @@ export const useStore = create<State>()(
         resetAll: () => set({ ...initial }),
       }
     },
-    { name: 'deutsch-quest-v1', version: 1 },
+    {
+      name: 'deutsch-quest-v1',
+      version: 2,
+      migrate: (state: unknown, from: number) => {
+        const s = state as State
+        if (from < 2 && s?.settings) {
+          // v1 stored a faster default and the previous voice
+          s.settings.speed = 0.75
+          s.settings.voice = 'German_FriendlyMan'
+        }
+        return s
+      },
+    },
   ),
 )
 
