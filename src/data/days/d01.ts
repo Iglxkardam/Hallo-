@@ -148,6 +148,11 @@ export const d01: Day = {
       body: 'German has two words for "you". **du** is informal, **Sie** is formal — and written **Sie** with a capital S wherever it appears in the sentence. Choosing wrongly is the one mistake Germans actually notice, so when in doubt use **Sie**: it is never rude, only a little distant.',
     },
     {
+      t: 'rule',
+      title: 'Regel — du is for exactly ONE person',
+      body: 'du addresses **one** person, face to face. Speaking to several friends you use **ihr**. **Sie** covers both — one person or a whole group. So: one friend → du · several friends → ihr · anyone formal, one or many → Sie.',
+    },
+    {
       t: 'table',
       caption: 'Wen duzt man, wen siezt man?',
       head: ['Person', 'Anrede', 'Note'],
@@ -157,8 +162,10 @@ export const d01: Day = {
         ['Familie und Freunde', 'du', 'the normal form of address'],
         ['Kollegen', 'Sie oder du', 'depends on the workplace and how close you are'],
         ['Fremde, formelle Situationen', 'Sie', 'especially with adults you do not know'],
+        ['Herr / Frau + Nachname', 'Sie', 'if you call them Herr or Frau, it is always Sie'],
+        ['Mehrere Freunde', 'ihr', 'du is singular — for a group of friends use ihr'],
       ],
-      say: ['Kleinkinder', 'Kinder', 'Familie und Freunde', 'Kollegen', 'Fremde'],
+      say: ['Kleinkinder', 'Kinder', 'Familie und Freunde', 'Kollegen', 'Fremde', 'Herr und Frau', 'mehrere Freunde'],
     },
     { t: 'h', text: '5 · Wie geht es dir? — und wie man antwortet' },
     {

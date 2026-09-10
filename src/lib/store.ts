@@ -135,7 +135,11 @@ export const useStore = create<State>()(
         setQuiz: (day, score, total) => {
           const prev = get().progress[day]?.quizScore ?? 0
           patchDay(day, { quizScore: Math.max(prev, score), quizTotal: total })
-          get().addXp(XP.quizCorrect * score + (score === total ? XP.quizPerfect : 0))
+          // Reward only what is NEW. Replaying a finished quiz, or pressing
+          // Finish twice, therefore earns nothing instead of farming XP.
+          const gained = Math.max(0, score - prev)
+          const perfect = score === total && prev < total ? XP.quizPerfect : 0
+          if (gained || perfect) get().addXp(XP.quizCorrect * gained + perfect)
           get().touchStreak()
           checkBadges()
         },

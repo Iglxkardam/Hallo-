@@ -28,6 +28,7 @@ export function Quiz({ exercises, onDone }: Props) {
   const [typed, setTyped] = useState('')
   const [picked, setPicked] = useState<number | null>(null)
   const [order, setOrder] = useState<string[]>([])
+  const [finished, setFinished] = useState(false)
   const { say } = useSpeak()
 
   const ex = exercises[i]
@@ -69,8 +70,10 @@ export function Quiz({ exercises, onDone }: Props) {
   }
 
   const next = () => {
-    if (last) onDone(right ? score : score, exercises.length)
-    else setI((n) => n + 1)
+    if (!last) return setI((n) => n + 1)
+    if (finished) return // the last card stays on screen; do not report twice
+    setFinished(true)
+    onDone(score, exercises.length)
   }
 
   const canCheck =
@@ -232,8 +235,8 @@ export function Quiz({ exercises, onDone }: Props) {
               <button className="btn btn-primary" onClick={check}>Check</button>
             )}
             {answered && (
-              <button className="btn btn-primary" onClick={next}>
-                {last ? 'Finish' : 'Next'} →
+              <button className="btn btn-primary" onClick={next} disabled={last && finished}>
+                {last ? (finished ? '✓ Saved' : 'Finish') : 'Next'} →
               </button>
             )}
           </div>

@@ -127,6 +127,32 @@ export const d02: Day = {
         { de: 'Ich arbeite als Reiseführer.', hi: 'I work as a tour guide.' },
       ],
     },
+    { t: 'h', text: '5 · Sich formell vorstellen' },
+    {
+      t: 'p',
+      text: 'A complete formal introduction, the way it runs in the Kursbuch: greet, give your name, ask theirs, ask where they are from, say goodbye **using their surname**.',
+    },
+    {
+      t: 'ex',
+      items: [
+        { de: 'Guten Morgen. Mein Name ist Nina Weber.', hi: 'Good morning. My name is Nina Weber.' },
+        { de: 'Guten Morgen, Frau Weber. Ich heiße Oliver Hansen.', hi: 'Good morning, Mrs Weber. My name is Oliver Hansen.' },
+        { de: 'Entschuldigung, wie heißen Sie?', hi: 'Excuse me, what is your name?' },
+        { de: 'Woher kommen Sie? — Ich komme aus Indien.', hi: 'Where are you from? — I am from India.' },
+        { de: 'Wo wohnen Sie? — Ich wohne in Ghaziabad.', hi: 'Where do you live? — I live in Ghaziabad.' },
+        { de: 'Auf Wiedersehen, Herr Hansen.', hi: 'Goodbye, Mr Hansen.' },
+        { de: 'Auf Wiedersehen, Frau Weber.', hi: 'Goodbye, Mrs Weber.' },
+      ],
+    },
+    {
+      t: 'rule',
+      title: 'Regel — Herr and Frau take the SURNAME',
+      body: 'Say **Herr Hansen** and **Frau Weber**, never "Herr Oliver". German uses title + family name, and saying goodbye by name — *Auf Wiedersehen, Frau Weber* — is normal politeness, not extra formality.',
+    },
+    {
+      t: 'warn',
+      text: 'The **S of Sie is always capital**, wherever it stands in the sentence: Wie heißen **Sie**? · Woher kommen **Sie**? A small "sie" means *she* or *they* instead — the capital is the only thing telling them apart in writing.',
+    },
     {
       t: 'sticky',
       text: 'Write the six endings in your notebook, then three lines about you: Ich heiße… / Ich komme aus… / Ich wohne in… That is the core of speaking part 1.',
