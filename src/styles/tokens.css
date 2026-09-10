@@ -1,0 +1,98 @@
+/* ── Design tokens ────────────────────────────────────────────────────────
+   Two sketchbook themes, not flat UI themes.
+   Light  = warm sketch paper, graphite ink.
+   Dark   = charcoal sketchbook, chalk ink.
+   Only token VALUES change between them.                                  */
+
+:root {
+  /* type */
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --font-read: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-hand: 'Caveat', 'Segoe Script', cursive;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* spacing / geometry — 4pt grid */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+  --r-sm: 10px; --r-md: 14px; --r-lg: 18px; --r-xl: 26px; --r-full: 999px;
+
+  /* hand-drawn corners — uneven radii read as "sketched by hand" */
+  --r-sketch: 14px 20px 16px 22px / 20px 15px 22px 16px;
+  --r-sketch-sm: 9px 13px 10px 14px / 13px 9px 14px 10px;
+
+  /* motion — Apple spring easings */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 140ms; --t-mid: 260ms; --t-slow: 480ms;
+
+  /* accents — muted, like coloured pencils rather than neon UI */
+  --blue: #3B7DD8;
+  --purple: #8067C8;
+  --green: #3E9E6B;
+  --orange: #D98A28;
+  --pink: #D2557E;
+  --teal: #3FA39B;
+}
+
+:root, [data-theme='light'] {
+  --bg: #EFEBE3;
+  --bg-grad: radial-gradient(1100px 640px at 12% -12%, #FBF8F2 0%, #F1EDE5 52%, #E9E4DA 100%);
+  --paper: #FCFAF5;
+  --paper-2: #F4F0E7;
+  --ink: #23211E;
+  --ink-2: #5C5751;
+  --ink-3: #918B82;
+
+  /* pencil lines — slightly warm, never pure black */
+  --line: rgba(35, 33, 30, 0.14);
+  --line-strong: rgba(35, 33, 30, 0.30);
+  --sketch: rgba(35, 33, 30, 0.42);
+  --rule: rgba(90, 135, 180, 0.20);
+  --margin-line: rgba(198, 70, 70, 0.30);
+
+  --glass: rgba(252, 250, 245, 0.78);
+  --grain: 0.05;
+
+  /* pencil shadows: tight, slightly offset, low blur */
+  --shadow-sm: 1px 1.5px 0 rgba(35, 33, 30, 0.07);
+  --shadow-md: 1.5px 2px 0 rgba(35, 33, 30, 0.09), 0 10px 26px rgba(35, 33, 30, 0.07);
+  --shadow-lg: 2px 3px 0 rgba(35, 33, 30, 0.10), 0 26px 54px rgba(35, 33, 30, 0.13);
+
+  --tint: rgba(59, 125, 216, 0.09);
+  --hl-yellow: rgba(255, 226, 120, 0.60);
+  --hl-mint: rgba(150, 226, 190, 0.52);
+  --hl-pink: rgba(255, 178, 205, 0.52);
+  --hl-blue: rgba(160, 200, 245, 0.52);
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #14151A;
+  --bg-grad: radial-gradient(1000px 600px at 10% -14%, #23262F 0%, #171920 52%, #101116 100%);
+  --paper: #1B1D24;
+  --paper-2: #22252D;
+  --ink: #E9E5DC;
+  --ink-2: #A6A199;
+  --ink-3: #736E67;
+
+  /* chalk lines on a dark board */
+  --line: rgba(233, 229, 220, 0.13);
+  --line-strong: rgba(233, 229, 220, 0.26);
+  --sketch: rgba(233, 229, 220, 0.36);
+  --rule: rgba(130, 170, 220, 0.13);
+  --margin-line: rgba(226, 110, 110, 0.32);
+
+  --glass: rgba(27, 29, 36, 0.78);
+  --grain: 0.07;
+
+  --shadow-sm: 1px 1.5px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 1.5px 2px 0 rgba(0, 0, 0, 0.55), 0 10px 28px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 2px 3px 0 rgba(0, 0, 0, 0.6), 0 28px 60px rgba(0, 0, 0, 0.55);
+
+  --tint: rgba(59, 125, 216, 0.16);
+  --hl-yellow: rgba(255, 214, 90, 0.24);
+  --hl-mint: rgba(90, 220, 170, 0.20);
+  --hl-pink: rgba(255, 135, 180, 0.20);
+  --hl-blue: rgba(120, 180, 250, 0.20);
+  color-scheme: dark;
+}

@@ -1,0 +1,118 @@
+/* ── Sketchbook surface ───────────────────────────────────────────────────
+   Paper grain, hand-drawn edges, pencil rules. Applied on top of the base
+   layout so the app still behaves like a precise Mac UI.                   */
+
+/* fine paper grain over the whole page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.app { position: relative; z-index: 1; }
+
+/* cards get uneven, hand-drawn corners and a pencil edge */
+.card,
+.day-card,
+.notebook,
+.level-card,
+.badge-tile,
+.gt-wrap,
+.rulebox,
+.opt,
+.answer-input,
+.feedback,
+.tip,
+.warn {
+  border-radius: var(--r-sketch);
+  border-color: var(--sketch);
+}
+.chip, .pill, .opt-key { border-radius: var(--r-sketch-sm); border-color: var(--sketch); }
+.btn { border-radius: var(--r-full); }
+
+/* second, offset outline = the "drawn twice" pencil look */
+.card, .day-card, .notebook {
+  position: relative;
+}
+.card::after,
+.day-card::after,
+.notebook::after {
+  content: '';
+  position: absolute;
+  inset: 3px 2px 2px 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sketch);
+  opacity: 0.5;
+  pointer-events: none;
+}
+/* the notebook already uses ::after for punch holes */
+.notebook::after { display: none; }
+
+/* underline links and headings with a sketched stroke */
+.nb-h::before {
+  background: var(--sketch);
+  border-radius: 2px;
+}
+
+/* ── custom scrollbars — thin, rounded, Mac-like ──────────────────────── */
+* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: var(--r-full);
+  border: 3.5px solid transparent;
+  background-clip: content-box;
+  transition: background var(--t-fast);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); background-clip: content-box; }
+::-webkit-scrollbar-thumb:active { background: var(--ink-2); background-clip: content-box; }
+::-webkit-scrollbar-corner { background: transparent; }
+
+/* ── hover translation ────────────────────────────────────────────────── */
+.gloss-word {
+  cursor: help;
+  border-bottom: 1.5px dotted var(--line-strong);
+  transition: background var(--t-fast), border-color var(--t-fast);
+  border-radius: 3px;
+}
+.gloss-word:hover,
+.gloss-word:focus-visible {
+  background: var(--hl-yellow);
+  border-bottom-color: var(--sketch);
+  outline: none;
+}
+
+.gloss-pop {
+  position: fixed;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 120px;
+  max-width: 260px;
+  padding: 9px 13px;
+  border-radius: var(--r-sketch-sm);
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  line-height: 1.35;
+}
+.gloss-de { font-size: 11px; font-weight: 700; opacity: 0.55; letter-spacing: 0.02em; }
+.gloss-en { font-size: 14.5px; font-weight: 650; }
+.gloss-note { font-size: 11px; opacity: 0.6; font-family: var(--font-mono); margin-top: 2px; }
+
+/* ── focus ring matches the pencil palette ────────────────────────────── */
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+
+/* the conjugated form that IS the headword, e.g. "bin" on the card for "sein" */
+.gloss-mark {
+  color: var(--blue);
+  font-weight: 700;
+  border-bottom-color: var(--blue);
+}

@@ -1,0 +1,212 @@
+/* ── Sidebar (desktop) / tab bar (mobile) ─────────────────────────────── */
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  padding: var(--s5) var(--s4);
+  border-right: 1px solid var(--line);
+  background: var(--glass);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  z-index: 20;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px var(--s2); }
+.brand-mark {
+  width: 34px; height: 34px; border-radius: 10px;
+  display: grid; place-items: center; font-size: 17px;
+  background: linear-gradient(150deg, var(--de-gold), var(--de-red) 55%, var(--de-black));
+  box-shadow: var(--shadow-sm);
+  flex: none;
+}
+.brand-name { font-size: 15px; font-weight: 750; letter-spacing: -0.02em; line-height: 1.1; }
+.brand-sub { font-size: 11px; color: var(--ink-3); }
+
+.nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-item {
+  position: relative;
+  display: flex; align-items: center; gap: 11px;
+  padding: 9px 12px; border-radius: var(--r-md);
+  font-size: 14px; font-weight: 600; color: var(--ink-2);
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.nav-item:hover { color: var(--ink); background: var(--paper-2); }
+.nav-item.active { color: var(--ink); }
+.nav-item.active .nav-glow {
+  position: absolute; inset: 0; z-index: -1;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+}
+.nav-item svg { flex: none; opacity: 0.9; }
+.nav-count {
+  margin-left: auto; font-size: 11px; font-weight: 700;
+  color: var(--ink-3); font-variant-numeric: tabular-nums;
+}
+
+/* level card pinned to the bottom */
+.level-card {
+  margin-top: auto;
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--paper), var(--paper-2));
+  box-shadow: var(--shadow-sm);
+}
+
+.streak-flame {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-weight: 750; font-variant-numeric: tabular-nums;
+  color: var(--orange);
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed; inset: auto 0 0 0;
+    height: auto; flex-direction: row; gap: 0;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+    border-right: none; border-top: 1px solid var(--line);
+  }
+  .brand, .level-card, .nav-count { display: none; }
+  .nav { flex-direction: row; width: 100%; justify-content: space-around; }
+  .nav-item {
+    flex-direction: column; gap: 3px; padding: 7px 6px;
+    font-size: 10px; font-weight: 650; letter-spacing: -0.01em;
+  }
+  .nav-item.active .nav-glow { background: var(--tint); border-color: transparent; box-shadow: none; }
+}
+
+/* ── XP toast + level-up ──────────────────────────────────────────────── */
+.toast-wrap {
+  position: fixed; z-index: 90;
+  right: var(--s5); bottom: var(--s5);
+  display: flex; flex-direction: column-reverse; gap: 8px;
+  pointer-events: none;
+}
+@media (max-width: 900px) { .toast-wrap { bottom: 86px; left: var(--s4); right: var(--s4); } }
+
+.toast {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; border-radius: var(--r-full);
+  background: var(--ink); color: var(--paper);
+  font-size: 13.5px; font-weight: 650;
+  box-shadow: var(--shadow-lg);
+}
+.toast-xp { background: linear-gradient(135deg, var(--blue), var(--purple)); color: #fff; }
+.toast-badge { background: linear-gradient(135deg, var(--orange), var(--pink)); color: #fff; }
+
+/* ── day / week cards ─────────────────────────────────────────────────── */
+.day-card {
+  position: relative;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-mid) var(--ease-out), box-shadow var(--t-mid) var(--ease-out),
+              border-color var(--t-mid);
+  overflow: hidden;
+}
+.day-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+.day-card.locked { opacity: 0.55; }
+.day-card.locked:hover { transform: none; box-shadow: var(--shadow-sm); }
+.day-card.done { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
+.day-num {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--ink-3);
+}
+.day-strip { position: absolute; inset: 0 0 auto 0; height: 3px; }
+
+/* ── quiz / game surfaces ─────────────────────────────────────────────── */
+.opt {
+  display: flex; align-items: center; gap: 11px;
+  width: 100%; text-align: left;
+  padding: 13px 16px; border-radius: var(--r-md);
+  border: 1.5px solid var(--line); background: var(--paper);
+  font-size: 15px; font-weight: 550;
+  transition: all var(--t-fast) var(--ease-out);
+}
+.opt:hover:not(:disabled) { border-color: var(--blue); background: var(--tint); transform: translateX(2px); }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--green); background: color-mix(in srgb, var(--green) 12%, var(--paper)); }
+.opt.wrong { border-color: var(--pink); background: color-mix(in srgb, var(--pink) 12%, var(--paper)); }
+.opt-key {
+  width: 24px; height: 24px; flex: none; border-radius: 7px;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-3);
+}
+
+.answer-input {
+  width: 100%; padding: 13px 16px;
+  border-radius: var(--r-md); border: 1.5px solid var(--line);
+  background: var(--paper); font-size: 16px; font-weight: 550;
+  transition: border-color var(--t-fast);
+}
+.answer-input:focus { outline: none; border-color: var(--blue); }
+.answer-input.right { border-color: var(--green); }
+.answer-input.wrong { border-color: var(--pink); }
+
+.feedback {
+  padding: 12px 16px; border-radius: var(--r-md);
+  font-size: 14px; line-height: 1.5;
+  border: 1px solid var(--line);
+}
+.feedback.right { background: color-mix(in srgb, var(--green) 10%, var(--paper)); border-color: color-mix(in srgb, var(--green) 32%, transparent); }
+.feedback.wrong { background: color-mix(in srgb, var(--pink) 10%, var(--paper)); border-color: color-mix(in srgb, var(--pink) 32%, transparent); }
+
+.chip {
+  padding: 8px 14px; border-radius: var(--r-full);
+  border: 1.5px solid var(--line); background: var(--paper);
+  font-size: 15px; font-weight: 600;
+  transition: all var(--t-fast) var(--ease-out);
+}
+.chip:hover { border-color: var(--blue); transform: translateY(-2px); }
+.chip.picked { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.badge-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: var(--s4) var(--s2); border-radius: var(--r-md);
+  border: 1px solid var(--line); background: var(--paper);
+  text-align: center;
+}
+.badge-tile.locked { opacity: 0.34; filter: grayscale(1); }
+.badge-tile .ico { font-size: 26px; line-height: 1; }
+
+/* ── collapsed sidebar ────────────────────────────────────────────────── */
+.app { transition: grid-template-columns var(--t-mid) var(--ease-out); }
+.app.app-mini { grid-template-columns: 74px 1fr; }
+
+.sidebar-toggle { margin-left: auto; color: var(--ink-3); flex: none; }
+.sidebar-toggle:hover { color: var(--ink); }
+
+.app-mini .brand {
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 0 var(--s2);
+}
+.app-mini .brand-text,
+.app-mini .nav-label,
+.app-mini .nav-count,
+.app-mini .level-detail { display: none; }
+
+.app-mini .sidebar { padding: var(--s5) 10px; align-items: stretch; }
+.app-mini .nav-item { justify-content: center; padding: 11px 0; }
+.app-mini .level-card { padding: 10px; display: grid; place-items: center; }
+.app-mini .level-card .row { gap: 0; }
+
+/* the toggle sits under the logo when there is no room beside it */
+.app-mini .sidebar-toggle { margin: 0; }
+
+@media (max-width: 900px) {
+  .app.app-mini { grid-template-columns: 1fr; }
+  .sidebar-toggle { display: none; }
+  .app-mini .nav-label { display: block; }
+}

@@ -1,0 +1,21 @@
+# dependencies & build output
+node_modules
+dist
+
+# secrets — never commit the API key
+.env
+.env.local
+
+# server-side generated cache (regenerated on demand)
+server/.cache
+
+# ── deliberately not published ──────────────────────────────────────────
+# Class recordings: each file is 120–360 MB, far over GitHub's 100 MB limit,
+# and they are the teacher's recordings, not ours to redistribute.
+classes/
+
+# The Netzwerk neu Kursbuch / Übungsbuch PDFs are commercial textbooks.
+*.pdf
+
+*.log
+.DS_Store
