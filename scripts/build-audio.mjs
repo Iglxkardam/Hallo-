@@ -59,7 +59,7 @@ await esbuild.build({
   alias: { '@': path.join(ROOT, 'src') },
   logLevel: 'silent',
 })
-const { DAYS } = await import('file://' + tmp.replace(/\\/g, '/'))
+const { DAYS, DOMAIN_VOCAB } = await import('file://' + tmp.replace(/\\/g, '/'))
 
 /* ── collect every phrase worth caching ──────────────────────────────── */
 const texts = new Set()
@@ -84,6 +84,43 @@ for (const day of DAYS) {
     if (e.k === 'order') add(e.a)
   }
 }
+
+for (const v of DOMAIN_VOCAB) {
+  add(v.de)
+  add(v.ex)
+}
+
+// every word that has a hover tooltip can be clicked to hear it — render those too, so
+// pronunciation on the deployed site never needs the live API
+const gtmp = path.join(ROOT, 'node_modules', '.cache-glossary.mjs')
+await esbuild.build({
+  entryPoints: [path.join(ROOT, 'src', 'lib', 'glossary.ts')],
+  bundle: true,
+  format: 'esm',
+  platform: 'node',
+  outfile: gtmp,
+  alias: { '@': path.join(ROOT, 'src') },
+  logLevel: 'silent',
+})
+const { lookup } = await import('file://' + gtmp.replace(/\\/g, '/'))
+const strings = []
+;(function walk(x) {
+  if (typeof x === 'string') strings.push(x)
+  else if (Array.isArray(x)) x.forEach(walk)
+  else if (x && typeof x === 'object') Object.values(x).forEach(walk)
+})([DAYS, DOMAIN_VOCAB])
+const haveLower = new Set([...texts].map((t) => t.toLowerCase()))
+let wordClips = 0
+for (const s of strings) {
+  for (const w of s.match(/[A-Za-zÄÖÜäöüß]{2,}/g) || []) {
+    const lw = w.toLowerCase()
+    if (haveLower.has(lw) || !lookup(w)) continue
+    haveLower.add(lw)
+    texts.add(lw)
+    wordClips++
+  }
+}
+console.log(`  + ${wordClips} single words with hover meanings`)
 
 const all = [...texts]
 const SPEEDS = { n: 1.0, s: 0.75 }

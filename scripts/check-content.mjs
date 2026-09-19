@@ -21,7 +21,10 @@ await esbuild.build({
   bundle: true, format: 'esm', platform: 'node', outfile: tmp,
   alias: { '@': path.join(ROOT, 'src') }, logLevel: 'silent',
 })
-const { DAYS } = await import('file://' + tmp.replace(/\\/g, '/'))
+const { DAYS: COURSE_DAYS, DOMAIN_VOCAB } = await import('file://' + tmp.replace(/\\/g, '/'))
+
+// the domain word set is checked like a day that has vocabulary only
+const DAYS = [...COURSE_DAYS, { id: 'Fach', vocab: DOMAIN_VOCAB, notes: [], exercises: [] }]
 
 const problems = []
 const warn = (day, kind, msg) => problems.push({ day, kind, msg })

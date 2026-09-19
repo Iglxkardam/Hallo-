@@ -6,6 +6,10 @@ import { d04 } from './days/d04'
 import { d05 } from './days/d05'
 import { d06 } from './days/d06'
 import { d07 } from './days/d07'
+import { DOMAIN_VOCAB } from './domain'
+
+/** Robotics / AI / Ausbildung words — a separate set, not part of the 30-day course. */
+export { DOMAIN_VOCAB }
 
 /**
  * Days that are actually written. To add Day 8, create `days/d08.ts` and add it

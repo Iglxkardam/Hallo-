@@ -87,6 +87,13 @@ confidence get no tooltip at all** — a missing tooltip is always better than a
 one. Inside mixed English/German text, words that are also ordinary English words
 (`in`, `man`, `also`, `hat`) are deliberately skipped.
 
+## Robotics & AI words
+
+`src/data/domain.ts` holds a separate, optional word set for the learner's own goal
+(Ausbildung as Mechatroniker / Master in Robotics & AI). It is not part of the 30-day
+course or the exam. It appears on the Words page under the "Robotics & AI" chip and
+works with hover meanings, flashcards and audio like every other word.
+
 ## Adding a day
 
 1. Create `src/data/days/d08.ts` following the shape of `d07.ts`.

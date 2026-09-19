@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { Vocab as VocabItem } from '@/types'
-import { ALL_VOCAB, DAYS } from '@/data/curriculum'
+import { ALL_VOCAB, DAYS, DOMAIN_VOCAB } from '@/data/curriculum'
 import { useStore } from '@/lib/store'
 import { reviewQueue, mastered } from '@/lib/srs'
 import { VocabCard } from '@/components/vocab/VocabCard'
@@ -12,7 +12,7 @@ type Mode = 'list' | 'cards' | 'due'
 
 export default function Vocab() {
   const [mode, setMode] = useState<Mode>('list')
-  const [dayFilter, setDayFilter] = useState<number | 'all'>('all')
+  const [dayFilter, setDayFilter] = useState<number | 'all' | 'tech'>('all')
   const [q, setQ] = useState('')
   const [dense, setDense] = useState(false)
 
@@ -24,7 +24,8 @@ export default function Vocab() {
   const inDeck = Object.keys(srs).length
   const dueKeys = useMemo(() => new Set(reviewQueue(Object.values(srs), 25).map((c) => c.key)), [srs])
 
-  const pool = dayFilter === 'all' ? ALL_VOCAB : (DAYS.find((d) => d.id === dayFilter)?.vocab ?? [])
+  const pool =
+    dayFilter === 'all' ? ALL_VOCAB : dayFilter === 'tech' ? DOMAIN_VOCAB : (DAYS.find((d) => d.id === dayFilter)?.vocab ?? [])
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase()
@@ -35,7 +36,7 @@ export default function Vocab() {
   }, [pool, q])
 
   const dueDeck: VocabItem[] = useMemo(
-    () => ALL_VOCAB.filter((v) => dueKeys.has(v.de)),
+    () => [...ALL_VOCAB, ...DOMAIN_VOCAB].filter((v) => dueKeys.has(v.de)),
     [dueKeys],
   )
 
@@ -90,6 +91,13 @@ export default function Vocab() {
                 Day {d.id}
               </button>
             ))}
+            <button
+              className={`chip${dayFilter === 'tech' ? ' picked' : ''}`}
+              onClick={() => setDayFilter('tech')}
+              title="Extra words for Ausbildung / Master in Robotics & AI — not part of the exam course"
+            >
+              Robotics &amp; AI
+            </button>
           </div>
 
           {filtered.length === 0 ? (

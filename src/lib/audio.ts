@@ -106,7 +106,7 @@ export async function speak(text: string, speed?: number, voice?: string): Promi
 
   // 1 — pre-rendered locally
   const man = await getManifest()
-  const entry = man?.files?.[clean]
+  const entry = man?.files?.[clean] ?? man?.files?.[clean.toLowerCase()]
   if (entry && (!voice || voice === man?.voice)) {
     // older manifests stored a single filename per phrase
     const file = typeof entry === 'string' ? entry : (wantSlow ? entry.s : entry.n) ?? entry.n ?? entry.s

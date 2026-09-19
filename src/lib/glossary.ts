@@ -1,4 +1,4 @@
-import { ALL_VOCAB } from '@/data/curriculum'
+import { ALL_VOCAB, DOMAIN_VOCAB } from '@/data/curriculum'
 import { bareNoun } from './utils'
 
 /**
@@ -630,7 +630,7 @@ function buildIndex(): Map<string, Gloss> {
 
   for (const [k, v] of Object.entries(EXTRA)) map.set(k, v)
 
-  for (const v of ALL_VOCAB) {
+  for (const v of [...ALL_VOCAB, ...DOMAIN_VOCAB]) {
     const article = v.de.match(/^(der|die|das)\s+/i)?.[1]
     const note = [article, v.pl ? `plural: ${v.pl}` : null].filter(Boolean).join(' · ') || undefined
 
