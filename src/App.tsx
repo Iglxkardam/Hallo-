@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Sidebar } from '@/components/shell/Sidebar'
@@ -8,10 +8,14 @@ import { useStore } from '@/lib/store'
 import Home from '@/routes/Home'
 import Course from '@/routes/Course'
 import DayView from '@/routes/DayView'
-import Vocab from '@/routes/Vocab'
-import Games from '@/routes/Games'
-import Exam from '@/routes/Exam'
-import Settings from '@/routes/Settings'
+
+// Home, Course and DayView are the daily path and load up front; the rest are
+// split out so the first paint downloads less.
+const Vocab = lazy(() => import('@/routes/Vocab'))
+const Games = lazy(() => import('@/routes/Games'))
+const Exam = lazy(() => import('@/routes/Exam'))
+const Ask = lazy(() => import('@/routes/Ask'))
+const Settings = lazy(() => import('@/routes/Settings'))
 
 export default function App() {
   const theme = useStore((s) => s.settings.theme)
@@ -58,6 +62,7 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
         >
+          <Suspense fallback={null}>
           <Routes location={loc}>
             <Route path="/" element={<Home />} />
             <Route path="/kurs" element={<Course />} />
@@ -66,9 +71,11 @@ export default function App() {
             <Route path="/spiele" element={<Games />} />
             <Route path="/spiele/:game" element={<Games />} />
             <Route path="/pruefung" element={<Exam />} />
+            <Route path="/frag" element={<Ask />} />
             <Route path="/einstellungen" element={<Settings />} />
             <Route path="*" element={<Home />} />
           </Routes>
+          </Suspense>
         </motion.div>
       </main>
       <Toaster />

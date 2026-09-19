@@ -23,7 +23,9 @@ let manifest: Manifest | null | undefined
 async function getManifest(): Promise<Manifest | null> {
   if (manifest !== undefined) return manifest
   try {
-    const r = await fetch('/audio/manifest.json')
+    // the clips are immutable, the manifest is not: always revalidate it so new
+    // phrases appear after a deploy instead of being hidden by a year-long cache
+    const r = await fetch('/audio/manifest.json', { cache: 'no-cache' })
     manifest = r.ok ? ((await r.json()) as Manifest) : null
   } catch {
     manifest = null

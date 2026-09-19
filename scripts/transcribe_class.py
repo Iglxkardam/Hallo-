@@ -25,6 +25,12 @@ import urllib.request
 
 import av
 
+# Windows consoles default to cp1252, which can't print ß/ü/etc. Without this,
+# printing a chunk's text crashes *after* it's already stored in `done`, and
+# the except block below then overwrites the real transcript with an empty,
+# permanently-"done" failure record.
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHUNK_SECONDS = 240          # 4 min -> ~7.7 MB of 16 kHz mono PCM
 RATE = 16000
@@ -130,7 +136,10 @@ def main(folder):
             try:
                 text = transcribe(wav, f'chunk{index:03d}.wav')
                 done[key] = {'at': f'{mins:02d}:{secs:02d}', 'text': text}
-                print(f'  [{mins:02d}:{secs:02d}] {text[:90]}')
+                try:
+                    print(f'  [{mins:02d}:{secs:02d}] {text[:90]}')
+                except UnicodeEncodeError:
+                    print(f'  [{mins:02d}:{secs:02d}] (transcribed; console cannot display it)')
                 break
             except Exception as e:
                 if attempt == 3:

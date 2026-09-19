@@ -17,5 +17,8 @@ classes/
 # The Netzwerk neu Kursbuch / Übungsbuch PDFs are commercial textbooks.
 *.pdf
 
+# Teacher-provided notes and the Goethe Modellsatz (and text extracted from them).
+books/
+
 *.log
 .DS_Store

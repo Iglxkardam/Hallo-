@@ -10,6 +10,7 @@
     "api": "node server/index.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
+    "serve": "npm run build && concurrently -n api,web -c magenta,cyan \"node server/index.mjs\" \"vite preview\"",
     "typecheck": "tsc --noEmit",
     "audio": "node scripts/build-audio.mjs",
     "check": "node scripts/check-content.mjs"
@@ -29,5 +30,8 @@
     "concurrently": "^9.1.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.11"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

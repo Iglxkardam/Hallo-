@@ -14,6 +14,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import { fileURLToPath } from 'node:url'
+import { ASK_MODEL, askMessages, parseAnswer } from '../api/_ask.js'
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)))
 const CACHE = path.join(ROOT, 'server', '.cache')
@@ -183,8 +184,26 @@ async function image(req, res, body) {
   }
 }
 
+// --- ask (translation / grammar / doubts) ----------------------------------
+async function ask(req, res, body) {
+  const question = String(body.question || '').slice(0, 1000).trim()
+  if (!question) return json(res, 400, { error: 'question required' })
+  if (!KEY) return json(res, 503, { error: 'MINIMAX_API_KEY not set' })
+
+  try {
+    const data = await minimax('/v1/text/chatcompletion_v2', {
+      model: ASK_MODEL(),
+      messages: askMessages(question, body.history),
+      temperature: 0.3,
+    })
+    json(res, 200, parseAnswer(data?.choices?.[0]?.message?.content))
+  } catch (e) {
+    json(res, 503, { error: String(e.message || e) })
+  }
+}
+
 // --- router ---------------------------------------------------------------
-const routes = { '/api/tts': tts, '/api/image': image, '/api/prewarm': prewarm }
+const routes = { '/api/tts': tts, '/api/image': image, '/api/prewarm': prewarm, '/api/ask': ask }
 
 http
   .createServer(async (req, res) => {

@@ -15,12 +15,44 @@ npm run dev          # API proxy on :8787 + app on :5173
 
 Open http://localhost:5173
 
+`npm run dev` runs Vite's *dev* server: every file is compiled and served
+unbundled, which is great for editing but means the browser makes hundreds of
+small requests, so it feels noticeably slower than the deployed site. For
+day-to-day use (not actively coding), run the production build instead —
+it's the same bundled, minified output Vercel serves, just running on your
+machine:
+
+```bash
+npm run serve        # builds once, then API proxy on :8787 + app on :4173
+```
+
+Open http://localhost:4173 — this loads instantly, same as the Vercel deploy.
+Re-run `npm run serve` after you change any source file or add a day, since
+it serves a static build rather than watching for edits.
+
 | Command | What it does |
 | --- | --- |
-| `npm run dev` | Runs the MiniMax proxy and the web app together |
+| `npm run dev` | Dev server with hot reload — use while editing |
+| `npm run serve` | Builds and serves the production bundle locally — use for daily practice, feels as fast as the deploy |
 | `npm run audio` | Pre-renders every German phrase to `public/audio` (one-time, resumable) |
 | `npm run audio -- --force` | Regenerates all clips, e.g. after changing the voice |
 | `npm run build` | Typechecks and builds to `dist/` |
+
+## Deploying to Vercel
+
+The repo is Vercel-ready: `vercel.json` sets the SPA rewrite, long-lived caching for
+`/assets` and `/audio`, and the serverless functions in `api/` (`tts`, `image`, `ask`,
+`health`) replace the local `server/index.mjs` proxy in production.
+
+1. Import the GitHub repo in Vercel (framework preset: Vite — detected automatically).
+2. Add these Environment Variables (Project → Settings → Environment Variables):
+   `MINIMAX_API_KEY` (required for the "Ask" tutor and live TTS), and optionally
+   `MINIMAX_GROUP_ID`, `MINIMAX_BASE_URL`, `MINIMAX_TTS_MODEL`, `MINIMAX_TTS_VOICE`,
+   `MINIMAX_CHAT_MODEL`.
+3. Deploy. Pre-rendered audio in `public/audio` is served as static files, so
+   everything except the Ask tutor works without the key.
+
+Before pushing, run `npm run build` — it type-checks and builds exactly like Vercel does.
 
 ## Audio
 

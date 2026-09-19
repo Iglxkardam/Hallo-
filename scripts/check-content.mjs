@@ -46,7 +46,8 @@ for (const d of DAYS) {
         warn(D, 'noun-no-article', `"${v.de}" is typed noun but has no der/die/das`)
       }
       // the stated gender must match the article actually written
-      if (first in ART && v.gender && v.gender !== ART[first]) {
+      // (plural-only nouns such as "die USA" are written with die but are gender "pl")
+      if (first in ART && v.gender && v.gender !== ART[first] && !(v.gender === 'pl' && first === 'die')) {
         warn(D, 'gender-mismatch', `"${v.de}" is written with "${first}" but gender is "${v.gender}"`)
       }
       // every plural takes the article die
@@ -56,7 +57,7 @@ for (const d of DAYS) {
     }
 
     if (v.type === 'verb' && v.ex) {
-      const stem = v.de.replace(/e?n$/, '').toLowerCase()
+      const stem = norm(v.de.replace(/e?n$/, ''))
       const shown = norm(v.ex).includes(stem.slice(0, Math.max(3, stem.length - 1)))
       if (!shown && !v.forms) {
         warn(D, 'verb-form-hidden', `"${v.de}": the example "${v.ex}" never shows a recognisable form of the verb, and no forms are given`)
@@ -70,7 +71,7 @@ for (const d of DAYS) {
   // the same word listed twice on one day would show as two identical cards
   const onDay = new Map()
   for (const v of d.vocab) {
-    const k = norm(v.de)
+    const k = v.de.trim() // exact: 'sie' (she/they) and 'Sie' (formal you) are different cards
     if (onDay.has(k)) warn(D, 'duplicate-vocab', `"${v.de}" appears twice in the same day`)
     onDay.set(k, v)
   }
@@ -80,7 +81,8 @@ for (const d of DAYS) {
 
     if (e.k === 'mcq') {
       if (!(e.a >= 0 && e.a < e.options.length)) warn(D, 'mcq-index', `${at}: answer index ${e.a} is out of range`)
-      if (new Set(e.options.map(norm)).size !== e.options.length) warn(D, 'mcq-duplicate', `${at}: duplicate options`)
+      // options that differ only in case or punctuation (Sie/sie, 3.789/3,789) are legitimately different answers
+      if (new Set(e.options.map((o) => o.trim())).size !== e.options.length) warn(D, 'mcq-duplicate', `${at}: duplicate options`)
     }
 
     if (e.k === 'artikel') {

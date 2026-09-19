@@ -4,19 +4,32 @@ import type { Exercise } from '@/types'
 import { matches, shuffle, cn } from '@/lib/utils'
 import { useSpeak } from '@/lib/audio'
 import { ProgressRing, SpeakButton } from '@/components/ui'
+import { Gloss } from '@/components/Gloss'
 
 interface Props {
   exercises: Exercise[]
   onDone: (score: number, total: number) => void
 }
 
-const prompt = (ex: Exercise) => {
+function Prompt({ ex }: { ex: Exercise }) {
   switch (ex.k) {
-    case 'mcq': return ex.q
-    case 'fill': return ex.q
-    case 'order': return `Build this sentence in German: ${ex.hi}`
-    case 'artikel': return `Which article? ___ ${ex.noun}`
-    case 'listen': return 'Listen, then type exactly what you hear'
+    case 'mcq':
+    case 'fill':
+      return <Gloss strict>{ex.q}</Gloss>
+    case 'order':
+      return (
+        <>
+          Build this sentence in German: <Gloss strict>{ex.hi}</Gloss>
+        </>
+      )
+    case 'artikel':
+      return (
+        <>
+          Which article? ___ <Gloss>{ex.noun}</Gloss>
+        </>
+      )
+    case 'listen':
+      return <>Listen, then type exactly what you hear</>
   }
 }
 
@@ -105,7 +118,7 @@ export function Quiz({ exercises, onDone }: Props) {
       >
           {/* question */}
           <div className="row" style={{ alignItems: 'flex-start', gap: 10 }}>
-            <h3 className="h3 grow" style={{ fontSize: 18, lineHeight: 1.4 }}>{prompt(ex)}</h3>
+            <h3 className="h3 grow" style={{ fontSize: 18, lineHeight: 1.4 }}><Prompt ex={ex} /></h3>
             {ex.k === 'listen' && <SpeakButton text={ex.text} label="Play again" />}
           </div>
 
@@ -120,7 +133,7 @@ export function Quiz({ exercises, onDone }: Props) {
                   className={cn('opt', answered && n === ex.a && 'right', answered && picked === n && n !== ex.a && 'wrong')}
                 >
                   <span className="opt-key">{'ABCD'[n]}</span>
-                  <span className="grow">{o}</span>
+                  <span className="grow"><Gloss>{o}</Gloss></span>
                 </button>
               ))}
             </div>
@@ -181,7 +194,7 @@ export function Quiz({ exercises, onDone }: Props) {
                     disabled={answered}
                     onClick={() => setOrder((o) => o.filter((_, k) => k !== n))}
                   >
-                    {w}
+                    <Gloss>{w}</Gloss>
                   </motion.button>
                 ))}
               </div>
@@ -197,7 +210,7 @@ export function Quiz({ exercises, onDone }: Props) {
                       style={spent ? { opacity: 0.3, pointerEvents: 'none' } : undefined}
                       onClick={() => setOrder((o) => [...o, w])}
                     >
-                      {w}
+                      <Gloss>{w}</Gloss>
                     </button>
                   )
                 })}
@@ -218,13 +231,13 @@ export function Quiz({ exercises, onDone }: Props) {
                 </b>
                 {!right && ex.k !== 'mcq' && ex.k !== 'artikel' && (
                   <div style={{ marginBottom: 4 }}>
-                    Correct answer: <b>{ex.k === 'order' ? ex.a : ex.a[0]}</b>
+                    Correct answer: <b><Gloss>{ex.k === 'order' ? ex.a : ex.a[0]}</Gloss></b>
                   </div>
                 )}
                 {!right && ex.k === 'artikel' && (
-                  <div style={{ marginBottom: 4 }}>Correct answer: <b>{ex.a} {ex.noun}</b></div>
+                  <div style={{ marginBottom: 4 }}>Correct answer: <b><Gloss>{`${ex.a} ${ex.noun}`}</Gloss></b></div>
                 )}
-                {ex.why}
+                <Gloss strict>{ex.why}</Gloss>
               </motion.div>
             )}
           </AnimatePresence>
