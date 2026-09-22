@@ -6,6 +6,7 @@ import { d04 } from './days/d04'
 import { d05 } from './days/d05'
 import { d06 } from './days/d06'
 import { d07 } from './days/d07'
+import { d08 } from './days/d08'
 import { DOMAIN_VOCAB } from './domain'
 
 /** Robotics / AI / Ausbildung words — a separate set, not part of the 30-day course. */
@@ -16,7 +17,7 @@ export { DOMAIN_VOCAB }
  * to this array — weeks, vocabulary, games, stats and routing all derive from
  * here automatically.
  */
-export const DAYS: Day[] = [d01, d02, d03, d04, d05, d06, d07]
+export const DAYS: Day[] = [d01, d02, d03, d04, d05, d06, d07, d08]
 
 export const TOTAL_DAYS = 30
 
@@ -50,7 +51,6 @@ export const weekOf = (dayId: number) => WEEKS.find((w) => w.days.includes(dayId
  *   10 Studium und Beruf · 11 Die Jacke gefällt mir! · 12 Ab in den Urlaub!
  */
 export const PLANNED: Record<number, { title: string; focus: string; kapitel: number }> = {
-  8:  { kapitel: 3,  title: 'In Hamburg: places and buildings', focus: 'Indefinite article ein/ein/eine · asking about things' },
   9:  { kapitel: 3,  title: 'Saying there is none', focus: 'Negation kein/kein/keine · adjective with sein' },
   10: { kapitel: 3,  title: 'Getting around and asking the way', focus: 'Transport · directions · imperative with Sie · months and seasons' },
   11: { kapitel: 3,  title: 'Plattform 1 — review of chapters 1–3', focus: 'Consolidation + first exam-style practice' },
