@@ -112,8 +112,19 @@ export const d04: Day = {
     },
     { t: 'h', text: '4 · Stammregeln — neue Verben, altes Muster' },
     {
+      t: 'table',
+      caption: 'Zwei Rechtschreibregeln — Wiederholung aus Tag 2',
+      head: ['Stamm endet auf …', 'Regel für du / er / ihr', 'Beispiel'],
+      rows: [
+        ['-t, -d · Konsonant + m/n', 'extra -e- vor der Endung', 'du arbeitest, du atmest'],
+        ['Ausnahme: l/r/h + m/n', 'keine extra -e-', 'du wohnst, du kommst, du lernst'],
+        ['s, ß, z, x', 'nur -t für du, nicht -st', 'du tanzt, du reist'],
+      ],
+      say: ['du arbeitest', 'du wohnst', 'du tanzt'],
+    },
+    {
       t: 'tip',
-      text: 'Same six endings as Tag 2 (ich -e · du -st · er/sie/es -t · wir -en · ihr -t · sie/Sie -en) and the same two spelling rules: an extra **-e-** before -st/-t when the stem ends in **-t/-d** or **consonant + m/n** (du arbeit**e**st, du atm**e**st) — but not after **l, r or h** (du wohn**st**, du komm**st**, du lern**st**); and only **-t** for du when the stem already ends in **s/ß/z/x** (du tanz**t**, not "tanzst"). Kochen and joggen are fully regular, so they need neither rule — the table below adds new verbs that follow the same patterns.',
+      text: 'kochen and joggen are fully regular, so they need neither rule. The table below adds new verbs that do.',
     },
     {
       t: 'table',
