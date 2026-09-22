@@ -110,34 +110,10 @@ export const d04: Day = {
       ],
       say: ['Fotografierst du gern?', 'Fotografiert ihr gern?', 'Tanzen Sie gern, Frau Grams?'],
     },
-    { t: 'h', text: '4 · Endungen und Stammregeln' },
+    { t: 'h', text: '4 · Stammregeln — neue Verben, altes Muster' },
     {
-      t: 'table',
-      caption: 'Regelmäßige Verben: Stamm + Endung',
-      head: ['Person', 'Ending', 'kochen', 'joggen'],
-      rows: [
-        ['ich', '-e', 'ich koche', 'ich jogge'],
-        ['du', '-st', 'du kochst', 'du joggst'],
-        ['er / sie / es', '-t', 'er kocht', 'er joggt'],
-        ['wir', '-en', 'wir kochen', 'wir joggen'],
-        ['ihr', '-t', 'ihr kocht', 'ihr joggt'],
-        ['sie / Sie', '-en', 'sie kochen', 'sie joggen'],
-      ],
-      say: ['ich koche', 'du kochst', 'er kocht', 'wir kochen', 'ihr kocht', 'sie kochen'],
-    },
-    {
-      t: 'rule',
-      title: 'Regel — stems that need an extra -e-',
-      body: 'If the stem ends in **-t or -d**, an **e** slips in before the ending so that you can pronounce it: du arbeit**e**st, er arbeit**e**t, ihr arbeit**e**t; du red**e**st, er red**e**t. Stems ending in a **consonant + m or n** usually do the same: atmen → du atm**e**st, er atm**e**t. The extra e only appears with **du, er/sie/es and ihr**; ich, wir and sie/Sie stay normal (ich arbeite, wir arbeiten).',
-    },
-    {
-      t: 'warn',
-      text: 'The m/n rule is not automatic. After **l, r or h** there is no extra e: lernen → du **lernst**, wohnen → du **wohnst**, and kommen → du **kommst**. The extra e is needed above all with t/d stems (arbeiten, reden, warten).',
-    },
-    {
-      t: 'rule',
-      title: 'Regel — stems ending in s, ß, z, x',
-      body: 'If the stem already ends in **s, ß, z or x**, the du ending is only **-t** (an -st would be hard to say): tanzen → du tanz**t**, reisen → du reis**t**, heißen → du heiß**t**, faxen → du fax**t**. The du form and the er/sie/es form then look the same.',
+      t: 'tip',
+      text: 'Same six endings as Tag 2 (ich -e · du -st · er/sie/es -t · wir -en · ihr -t · sie/Sie -en) and the same two spelling rules: an extra **-e-** before -st/-t when the stem ends in **-t/-d** or **consonant + m/n** (du arbeit**e**st, du atm**e**st) — but not after **l, r or h** (du wohn**st**, du komm**st**, du lern**st**); and only **-t** for du when the stem already ends in **s/ß/z/x** (du tanz**t**, not "tanzst"). Kochen and joggen are fully regular, so they need neither rule — the table below adds new verbs that follow the same patterns.',
     },
     {
       t: 'table',
