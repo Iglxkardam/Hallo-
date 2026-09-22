@@ -622,6 +622,159 @@ const EXTRA: Record<string, Gloss> = {
   unterstrich: { en: 'underscore', note: 'der' },
   großgeschrieben: { en: 'written with a capital letter', note: 'großschreiben, past participle' },
   kleingeschrieben: { en: 'written in lowercase', note: 'kleinschreiben, past participle' },
+
+  // ── weekday adverbs (Tag 6 table only ever added "montags" itself) ──
+  dienstags: { en: 'on Tuesdays, every Tuesday', note: 'adverb' },
+  mittwochs: { en: 'on Wednesdays, every Wednesday', note: 'adverb' },
+  donnerstags: { en: 'on Thursdays, every Thursday', note: 'adverb' },
+  freitags: { en: 'on Fridays, every Friday', note: 'adverb' },
+  samstags: { en: 'on Saturdays, every Saturday', note: 'adverb' },
+  sonntags: { en: 'on Sundays, every Sunday', note: 'adverb' },
+
+  // ── Muster 1 (a → ä): full conjugation, taught in Tag 4 but only "du" was glossed ──
+  raten: { en: 'to advise, to guess', note: 'verb · a → ä' },
+  rate: { en: 'advise, guess', note: 'raten · ich' },
+  rätst: { en: 'advise, guess', note: 'raten · du · stem change a → ä' },
+  rät: { en: 'advises, guesses', note: 'raten · er/sie/es · stem change a → ä' },
+  tragen: { en: 'to carry, to wear', note: 'verb · a → ä' },
+  trage: { en: 'carry, wear', note: 'tragen · ich' },
+  trägst: { en: 'carry, wear', note: 'tragen · du · stem change a → ä' },
+  trägt: { en: 'carries, wears', note: 'tragen · er/sie/es · stem change a → ä' },
+  waschen: { en: 'to wash', note: 'verb · a → ä' },
+  wasche: { en: 'wash', note: 'waschen · ich' },
+  wäschst: { en: 'wash', note: 'waschen · du · stem change a → ä' },
+  wäscht: { en: 'washes', note: 'waschen · er/sie/es · stem change a → ä' },
+  halten: { en: 'to hold, to stop', note: 'verb · a → ä' },
+  halte: { en: 'hold, stop', note: 'halten · ich' },
+  hältst: { en: 'hold, stop', note: 'halten · du · stem change a → ä' },
+  hält: { en: 'holds, stops', note: 'halten · er/sie/es · stem change a → ä' },
+
+  // ── Muster 2 (e → i): same gap ──
+  geben: { en: 'to give', note: 'verb · e → i' },
+  gebe: { en: 'give', note: 'geben · ich' },
+  gibst: { en: 'give', note: 'geben · du · stem change e → i' },
+  gibt: { en: 'gives', note: 'geben · er/sie/es · stem change e → i' },
+  werfen: { en: 'to throw', note: 'verb · e → i' },
+  werfe: { en: 'throw', note: 'werfen · ich' },
+  wirfst: { en: 'throw', note: 'werfen · du · stem change e → i' },
+  wirft: { en: 'throws', note: 'werfen · er/sie/es · stem change e → i' },
+  helfe: { en: 'help', note: 'helfen · ich' },
+  hilfst: { en: 'help', note: 'helfen · du · stem change e → i' },
+  hilft: { en: 'helps', note: 'helfen · er/sie/es · stem change e → i' },
+  treffe: { en: 'meet', note: 'treffen · ich' },
+  triffst: { en: 'meet', note: 'treffen · du · stem change e → i' },
+  trifft: { en: 'meets', note: 'treffen · er/sie/es · stem change e → i' },
+  esse: { en: 'eat', note: 'essen · ich' },
+  esst: { en: 'eat', note: 'essen · ihr' },
+  sprecht: { en: 'speak', note: 'sprechen · ihr' },
+
+  // ── Muster 3 (e → ie): same gap ──
+  empfehlen: { en: 'to recommend', note: 'verb · e → ie' },
+  empfehle: { en: 'recommend', note: 'empfehlen · ich' },
+  empfiehlst: { en: 'recommend', note: 'empfehlen · du · stem change e → ie' },
+  empfiehlt: { en: 'recommends', note: 'empfehlen · er/sie/es · stem change e → ie' },
+
+  // ── regular -e- stem verbs used in examples but never fully conjugated ──
+  atmen: { en: 'to breathe', note: 'verb' },
+  atme: { en: 'breathe', note: 'atmen · ich' },
+  atmest: { en: 'breathe', note: 'atmen · du · extra -e-' },
+  atmet: { en: 'breathes', note: 'atmen · er/sie/es, ihr · extra -e-' },
+  reden: { en: 'to talk', note: 'verb' },
+  rede: { en: 'talk', note: 'reden · ich' },
+  redest: { en: 'talk', note: 'reden · du · extra -e-' },
+  redet: { en: 'talks', note: 'reden · er/sie/es, ihr · extra -e-' },
+  warte: { en: 'wait', note: 'warten · ich' },
+  wartest: { en: 'wait', note: 'warten · du · extra -e-' },
+  wartet: { en: 'waits', note: 'warten · er/sie/es, ihr · extra -e-' },
+
+  // ── s/z-stem and other regular verb forms missing a person ──
+  tanzt: { en: 'dances, dance', note: 'tanzen · du, er/sie/es' },
+  reisen: { en: 'to travel', note: 'verb' },
+  reist: { en: 'travels, travel', note: 'reisen · du, er/sie/es' },
+  singen: { en: 'to sing', note: 'verb' },
+  singe: { en: 'sing', note: 'singen · ich' },
+  singt: { en: 'sings', note: 'singen · er/sie/es, ihr' },
+  höre: { en: 'hear, listen', note: 'hören · ich' },
+  hörst: { en: 'hear, listen', note: 'hören · du' },
+  hört: { en: 'hears, listens', note: 'hören · er/sie/es, ihr' },
+  trinkt: { en: 'drinks', note: 'trinken · er/sie/es' },
+  trinkst: { en: 'drink', note: 'trinken · du' },
+  regnen: { en: 'to rain', note: 'verb · impersonal, only used with es' },
+  regnet: { en: 'rains', note: 'regnen · es regnet = it is raining' },
+  beginnen: { en: 'to begin, to start', note: 'verb' },
+  beginnt: { en: 'begins, starts', note: 'beginnen · er/sie/es' },
+  kennst: { en: 'know', note: 'kennen · du' },
+
+  // ── everyday adjectives, adverbs and nouns missing a tooltip ──
+  oft: { en: 'often', note: 'adverb' },
+  klar: { en: 'clear', note: 'adjective · alles klar = all clear, everything understood' },
+  blau: { en: 'blue', note: 'adjective' },
+  kurz: { en: 'short', note: 'adjective' },
+  später: { en: 'later', note: 'adverb' },
+  heftig: { en: 'heavily, hard, intensely', note: 'adverb/adjective' },
+  ruhig: { en: 'quiet, calm', note: 'adjective' },
+  weit: { en: 'far', note: 'adjective/adverb' },
+  lang: { en: 'long', note: 'adjective' },
+  lange: { en: 'for a long time', note: 'adverb' },
+  großen: { en: 'big, large', note: 'groß, declined · masculine/neuter accusative or dative' },
+  rechts: { en: 'on the right', note: 'adverb' },
+  gleich: { en: 'right away, in a moment / the same', note: 'adverb/adjective' },
+  außerhalb: { en: 'outside (of)', note: 'preposition' },
+  leid: { en: 'sorry', note: 'tut mir leid = I am sorry' },
+  schade: { en: 'a pity, a shame', note: 'interjection' },
+  kaffee: { en: 'coffee', note: 'der' },
+  tee: { en: 'tea', note: 'der' },
+  ecke: { en: 'corner', note: 'die · um die Ecke = around the corner' },
+  fahre: { en: 'drive, go', note: 'fahren · ich' },
+  fahrt: { en: 'drive, go', note: 'fahren · ihr' },
+  hause: { en: 'home', note: 'dative of das Haus · used in zu Hause (at home), nach Hause (going home)' },
+  männlich: { en: 'male, masculine', note: 'adjective · opposite of weiblich' },
+  weiblich: { en: 'female, feminine', note: 'adjective · opposite of männlich' },
+  bringen: { en: 'to bring', note: 'verb' },
+  bringt: { en: 'brings', note: 'bringen · er/sie/es' },
+
+  // ── last remaining real words (everything left after this is a proper name or a spelled-out number) ──
+  niederlande: { en: 'the Netherlands', note: 'die · plural form, always used with an article' },
+  niederlanden: { en: 'the Netherlands', note: 'die Niederlande, dative · in den Niederlanden = in the Netherlands' },
+  reiseführer: { en: 'tour guide, travel guide', note: 'der' },
+  deutschlehrerin: { en: 'German teacher (female)', note: 'die · male: der Deutschlehrer' },
+  architektin: { en: 'architect (female)', note: 'die · male: der Architekt' },
+  fisch: { en: 'fish', note: 'der · pl. die Fische' },
+  katze: { en: 'cat', note: 'die · pl. die Katzen' },
+  maus: { en: 'mouse', note: 'die · pl. die Mäuse' },
+  oma: { en: 'grandma', note: 'die · informal' },
+  vogel: { en: 'bird', note: 'der · pl. die Vögel' },
+  schließen: { en: 'to close', note: 'verb' },
+  information: { en: 'information', note: 'die · pl. die Informationen' },
+  familie: { en: 'family', note: 'die · pl. die Familien' },
+  chef: { en: 'boss', note: 'der · female: die Chefin' },
+  polizist: { en: 'police officer', note: 'der · female: die Polizistin' },
+  polizisten: { en: 'police officers', note: 'plural of der Polizist' },
+  mehrere: { en: 'several', note: 'adjective' },
+  doch: { en: 'yes it is / but, though / after all', note: 'flexible particle — contradicts a negative question, or softens a sentence' },
+  ihrer: { en: 'your', note: 'formal Ihr, genitive/dative feminine' },
+  ihren: { en: 'your', note: 'formal Ihr, accusative masculine or dative plural' },
+  alle: { en: 'all, everyone', note: 'pronoun/adjective' },
+  zweit: { en: 'second', note: 'zu zweit = in pairs, as a two' },
+  bilden: { en: 'to form', note: 'verb · Bilden Sie Gruppen = form groups' },
+  notieren: { en: 'to note down', note: 'verb' },
+  gruppen: { en: 'groups', note: 'plural of die Gruppe' },
+  karten: { en: 'cards, maps, tickets', note: 'plural of die Karte' },
+  ab: { en: 'from, starting from', note: 'preposition · ab Montag = from Monday on' },
+  satzende: { en: 'end of the sentence', note: 'das' },
+  punjabi: { en: 'Punjabi', note: 'language/ethnicity' },
+  spielst: { en: 'play', note: 'spielen · du' },
+  fotografierst: { en: 'take photos', note: 'fotografieren · du' },
+  fotografiert: { en: 'takes photos', note: 'fotografieren · er/sie/es, ihr' },
+  konferenz: { en: 'conference', note: 'die · pl. die Konferenzen' },
+  jedes: { en: 'each, every', note: 'jeder, neuter form · jedes Jahr = every year' },
+  nachmittag: { en: 'afternoon', note: 'der · am Nachmittag = in the afternoon' },
+  hausnummer: { en: 'house number', note: 'die' },
+  tun: { en: 'to do', note: 'verb' },
+  tut: { en: 'does', note: 'tun · er/sie/es · es tut mir leid = I am sorry' },
+  na: { en: 'well, so', note: 'filler word' },
+  ach: { en: 'oh, ah', note: 'interjection · ach so = oh I see' },
+  ah: { en: 'ah, oh', note: 'interjection' },
 }
 
 /** Course vocabulary is authoritative; EXTRA fills the gaps around it. */
@@ -641,6 +794,17 @@ function buildIndex(): Map<string, Gloss> {
       // never let a multi-word phrase overwrite a precise single-word entry
       if (map.has(key) && f.includes(' ')) continue
       map.set(key, { en: v.en, note })
+    }
+
+    // the plural itself ("Wochen") was previously only ever mentioned in the
+    // singular's note, so hovering it directly showed nothing — index it too.
+    if (v.pl) {
+      const pluralNote = `plural of ${v.de}`
+      for (const f of new Set([v.pl, bareNoun(v.pl)])) {
+        const key = f.toLowerCase()
+        if (map.has(key)) continue // a hand-checked or more specific entry wins
+        map.set(key, { en: v.en, note: pluralNote })
+      }
     }
   }
 
